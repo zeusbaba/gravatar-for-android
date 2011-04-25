@@ -66,16 +66,7 @@ public class ExampleApp extends Activity {
     	GravatarResponseData gravatarResponseData = (GravatarResponseData)response.getSerializable("gravatarResponseData");
     	
     	if(CONSTANTS.DEBUG)Log.d(TAG, "gravatarResponseData->" + gravatarResponseData);
-/*
-gravatarResponseData->GravatarResponseData [
-	errorMessage=com.wareninja.opensource.gravatar4android.GravatarDownloadException: Gravatar could not be downloaded: Permission denied
-	, errorType=
-	, imageData=null
-	, imageUrl=http://www.gravatar.com/avatar/68a0123a57212ee72a2c20538dce457f.jpg?s=100&d=identicon
-	, status=0
-	]
 
- */
     	ImageView gravatarImage = (ImageView)findViewById(R.id.img_gravatar);
     	TextView resultText = (TextView)findViewById(R.id.tv_result);
     	
