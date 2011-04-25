@@ -7,13 +7,13 @@
 <TextView  android:id="@+id/tv_title"
     android:layout_width="fill_parent" 
     android:layout_height="wrap_content" 
-    android:text="Gravatar for Android - EXAMPLE... will download gravatar image for yg@wareninja.com"
+    android:text="Gravatar for Android - EXAMPLE... will download gravatar image and profile for yg@wareninja.com"
     />
 
 <TextView  android:id="@+id/tv_result"
     android:layout_width="fill_parent" 
     android:layout_height="wrap_content" 
-    android:text="Loading..."
+    android:text="Loading Gravatar image..."
     />
     
 <ImageView android:id="@+id/img_gravatar"
@@ -22,4 +22,11 @@
 	android:src="@drawable/app_icon"
 	android:visibility="visible"
 	/>
+	
+<TextView  android:id="@+id/tv_profile"
+    android:layout_width="fill_parent" 
+    android:layout_height="wrap_content" 
+    android:text="Loading Gravatar profile..."
+    />
+    
 </LinearLayout>

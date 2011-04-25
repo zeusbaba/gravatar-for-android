@@ -17,7 +17,7 @@
 */
 
 
-package com.wareninja.opensource.gravatar4android;
+package com.wareninja.opensource.gravatar4android.common;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;

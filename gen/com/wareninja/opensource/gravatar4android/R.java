@@ -15,6 +15,7 @@ public final class R {
     }
     public static final class id {
         public static final int img_gravatar=0x7f050002;
+        public static final int tv_profile=0x7f050003;
         public static final int tv_result=0x7f050001;
         public static final int tv_title=0x7f050000;
     }

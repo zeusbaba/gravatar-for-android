@@ -16,7 +16,10 @@
  *  limitations under the License.
 */
 
-package com.wareninja.opensource.gravatar4android;
+package com.wareninja.opensource.gravatar4android.common;
+
+import com.wareninja.opensource.gravatar4android.GravatarDefaultImage;
+import com.wareninja.opensource.gravatar4android.GravatarRating;
 
 public class CONSTANTS {
 
@@ -28,4 +31,7 @@ public class CONSTANTS {
 	public final static String API_GRAVATAR_AVATAR = "/avatar/";
 	public static final GravatarRating DEFAULT_RATING = GravatarRating.GENERAL_AUDIENCES;
 	public static final GravatarDefaultImage DEFAULT_DEFAULT_IMAGE = GravatarDefaultImage.HTTP_404;
+	
+	public final static int TASK_ACTION_IMAGE = 1;
+	public final static int TASK_ACTION_PROFILE = 2;
 }

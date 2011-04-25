@@ -16,17 +16,28 @@
  *  limitations under the License.
 */
 
-package com.wareninja.opensource.gravatar4android;
+package com.wareninja.opensource.gravatar4android.common;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.params.BasicHttpParams;
+import org.apache.http.params.HttpConnectionParams;
+import org.apache.http.params.HttpParams;
+import org.apache.http.protocol.BasicHttpContext;
+import org.apache.http.protocol.HttpContext;
+import org.apache.http.util.EntityUtils;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -63,7 +74,34 @@ public final class Utils {
       return null;
     }
     
-    public static byte[] downloadImage_alternative1(String imageUrl) throws GravatarDownloadException {
+    private final static int TIMEOUT = 20000;
+    public static String downloadProfile(String profileUrl) throws GenericException {
+    	
+    	String response = "";
+    	
+    	HttpParams myParams = new BasicHttpParams();
+    	HttpConnectionParams.setConnectionTimeout(myParams, TIMEOUT);
+        HttpConnectionParams.setSoTimeout(myParams, TIMEOUT);
+        
+        DefaultHttpClient httpClient = new DefaultHttpClient(myParams);
+        
+        HttpGet httpGet = new HttpGet(profileUrl);
+        if(CONSTANTS.DEBUG)Log.d(TAG, "WebGetURL: "+profileUrl);
+        
+        HttpResponse httpResponse = null;
+        try {
+        	httpResponse = httpClient.execute(httpGet);
+        	
+        	response = EntityUtils.toString(httpResponse.getEntity());
+        } catch (Exception e) {
+        	Log.e(TAG, e.getMessage());
+            throw new GenericException(e);
+        }
+        
+        return response;
+    }
+    
+    public static byte[] downloadImage_alternative1(String imageUrl) throws GenericException {
 		InputStream stream = null;
 		try {
 			URL url = new URL(imageUrl);
@@ -72,14 +110,14 @@ public final class Utils {
 		} catch (FileNotFoundException e) {
 			return null;
 		} catch (Exception e) {
-			throw new GravatarDownloadException(e);
+			throw new GenericException(e);
 		} finally {
 			IOUtils.closeQuietly(stream);
 		}
 	}
 
     
-    public static byte[] downloadImage_alternative2(String url) throws GravatarDownloadException {
+    public static byte[] downloadImage_alternative2(String url) throws GenericException {
         
 		byte[] imageData = null;
         try {
@@ -109,7 +147,7 @@ public final class Utils {
         catch (Exception e) {
 
         	Log.w(TAG, "Exc="+e);
-        	throw new GravatarDownloadException(e);
+        	throw new GenericException(e);
         }
         
         return imageData;
@@ -206,5 +244,5 @@ public final class Utils {
         return output;
     }
     
-
+    
 }

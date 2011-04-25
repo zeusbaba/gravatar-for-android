@@ -21,6 +21,10 @@ package com.wareninja.opensource.gravatar4android;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.wareninja.opensource.gravatar4android.common.CONSTANTS;
+import com.wareninja.opensource.gravatar4android.common.GenericRequestListener;
+import com.wareninja.opensource.gravatar4android.common.Utils;
+
 import android.os.Bundle;
 import android.text.TextUtils;
 
@@ -88,7 +92,7 @@ public final class Gravatar {
 	/**
 	 * Returns the Gravatar URL for the given email address.
 	 */
-	public String getUrl(String email) {
+	public String getImageUrl(String email) {
 		if(TextUtils.isEmpty(email))return null;
 
 		// hexadecimal MD5 hash of the requested user's lowercased email address
@@ -99,14 +103,34 @@ public final class Gravatar {
 			+ emailHash //+ ".jpg"
 			+ params;
 	}
+	public String getProfileUrl(String email) {
+		if(TextUtils.isEmpty(email))return null;
 
-	public void download(String email, GenericRequestListener reqListener) {
+		// hexadecimal MD5 hash of the requested user's lowercased email address
+		// with all whitespace trimmed
+		String emailHash = Utils.md5Hex(email.toLowerCase().trim());
+		return CONSTANTS.API_GRAVATAR_BASE_URL + "/"+ emailHash + ".json";
+	}
+
+	public void downloadGravatarImage(String email, GenericRequestListener reqListener) {
 		
 		GravatarTask mGravatarTask = new GravatarTask();
 		//mGravatarTask.setTaskContext(mContext);// to be added later
 		Bundle params = new Bundle();
-		params.putString("imageUrl", getUrl(email));
+		params.putString("imageUrl", getImageUrl(email));
 		mGravatarTask.setReqListener(reqListener);
+		mGravatarTask.setTaskAction(CONSTANTS.TASK_ACTION_IMAGE);
+		mGravatarTask.execute(params);
+	}
+	
+	public void downloadGravatarProfile(String email, GenericRequestListener reqListener) {
+		
+		GravatarTask mGravatarTask = new GravatarTask();
+		//mGravatarTask.setTaskContext(mContext);// to be added later
+		Bundle params = new Bundle();
+		params.putString("profileUrl", getProfileUrl(email));
+		mGravatarTask.setReqListener(reqListener);
+		mGravatarTask.setTaskAction(CONSTANTS.TASK_ACTION_PROFILE);
 		mGravatarTask.execute(params);
 	}
 
