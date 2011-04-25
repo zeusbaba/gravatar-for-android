@@ -1,7 +1,6 @@
 Android library for Gravatar stuff;
-load Gravatar profile images etc etc...
+load Gravatar profile and images etc etc...
 
 Current features;
 - Load Gravatar image using AsyncTask
-
-TODO: load Gravatar profile
+- Load and Parse Gravatar Profile
