@@ -68,25 +68,31 @@ public final class Gravatar {
 	 * Specify a gravatar size between 1 and 512 pixels. If you omit this, a
 	 * default size of 80 pixels is used.
 	 */
-	public void setSize(int sizeInPixels) {
+	public Gravatar setSize(int sizeInPixels) {
 		if(sizeInPixels >= 1 && sizeInPixels <= 512)
 			this.size = sizeInPixels;
+
+        return this;
 	}
 
 	/**
 	 * Specify a rating to ban gravatar images with explicit content.
 	 */
-	public void setRating(GravatarRating rating) {
+	public Gravatar setRating(GravatarRating rating) {
 		if(rating!=null && !TextUtils.isEmpty(rating.getCode()))
 			this.rating = rating;
+
+        return this;
 	}
 
 	/**
 	 * Specify the default image to be produced if no gravatar image was found.
 	 */
-	public void setDefaultImage(GravatarDefaultImage defaultImage) {
+	public Gravatar setDefaultImage(GravatarDefaultImage defaultImage) {
 		if(defaultImage!=null && !TextUtils.isEmpty(defaultImage.getCode()))
 			this.defaultImage = defaultImage;
+
+        return this;
 	}
 
 	/**
