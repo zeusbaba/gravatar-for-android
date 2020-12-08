@@ -8,4 +8,4 @@ Current features;
 ## Update/Info  
 Unfortunately, it has been a long time since, so this project has been in a limbo state. Nevertheless, not much has changed with Gravatar API. 
 
-Recently, I published [flutter_gravatar](https://pub.dev/packages/flutter_gravatar) package which is more up2date for Flutter/Dart developers.  
+Recently, I published [flutter_gravatar](https://gc.edu.sa/packages/flutter_gravatar) package which is more up2date for Flutter/Dart developers.  
